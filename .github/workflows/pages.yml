@@ -1,13 +1,13 @@
-name: Build & deploy Jupyter-Book
+name: Build & Deploy Jupyter-Book
 
 on:
   push:
     branches: [main]
 
 permissions:
-  contents: read    # for checkout
-  pages: write      # to update GitHub Pages
-  id-token: write   # for actions/deploy-pages
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build-and-deploy:
@@ -21,12 +21,10 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: "3.12"
-        cache: "pip"
+        cache: pip
 
     - name: Install dependencies
-      run: |
-        pip install jupyter-book
-        pip install -r requirements.txt
+      run: pip install jupyter-book
 
     - name: Build the book
       run: jupyter-book build pypsa-workshop
@@ -34,7 +32,10 @@ jobs:
     - name: Add .nojekyll
       run: touch pypsa-workshop/_build/html/.nojekyll
 
+    - name: Upload static site artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: pypsa-workshop/_build/html
+
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
-      with:
-        publish_dir: pypsa-workshop/_build/html
