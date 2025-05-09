@@ -1,0 +1,17 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: annex-python
+- file: annex-pandas
+# - file: slides
+#   title: Introduction to PyPSA-Eur
+# - file: 01-workshop-pypsa-intro
+# - file: 02-workshop-pypsa-more-features
+# - file: 03-workshop-pypsa-sc-expansion
+# - file: 05-config
+#   title: Exploring MD (config.yaml)
+# - file: 05-scenarios
+#   title: Exploring MD (scenarios.yaml)
